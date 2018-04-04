@@ -1,0 +1,154 @@
+{
+  "tests": [
+    {
+      "name": "LBS Account Create (+) Test",
+      "definition": "https://schema.management.azure.com/schemas/2017-01-01-preview/Microsoft.LocationBasedServices.json#/resourceDefinitions/accounts",
+      "json": {
+        "apiVersion": "2017-01-01-preview",
+        "location": "[resourceGroup().location]",
+        "name": "[parameters('name')]",
+        "sku": {
+          "name": "[parameters('pricingSpec')]"
+        },
+        "type": "Microsoft.LocationBasedServices/accounts"
+      }
+    },
+    {
+      "name": "LBS Account Create (-) Test, no name",
+      "expectedErrors": [
+        {
+          "message": "Missing required property: name",
+          "dataPath": "/",
+          "schemaPath": "/required/0"
+        }
+      ],
+      "definition": "https://schema.management.azure.com/schemas/2017-01-01-preview/Microsoft.LocationBasedServices.json#/resourceDefinitions/accounts",
+      "json": {
+        "apiVersion": "2017-01-01-preview",
+        "location": "[resourceGroup().location]",
+        "sku": {
+          "name": "[parameters('pricingSpec')]"
+        },
+        "type": "Microsoft.LocationBasedServices/accounts"
+      }
+    },
+    {
+      "name": "LBS Account Create (-) Test, no type",
+      "expectedErrors": [
+        {
+          "message": "Missing required property: type",
+          "dataPath": "/",
+          "schemaPath": "/required/1"
+        }
+      ],
+      "definition": "https://schema.management.azure.com/schemas/2017-01-01-preview/Microsoft.LocationBasedServices.json#/resourceDefinitions/accounts",
+      "json": {
+        "apiVersion": "2017-01-01-preview",
+        "location": "[resourceGroup().location]",
+        "name": "[parameters('name')]",
+        "sku": {
+          "name": "[parameters('pricingSpec')]"
+        }
+      }
+    },
+    {
+      "name": "LBS Account Create (-) Test, no apiVersion",
+      "expectedErrors": [
+        {
+          "message": "Missing required property: apiVersion",
+          "dataPath": "/",
+          "schemaPath": "/required/4"
+        }
+      ],
+      "definition": "https://schema.management.azure.com/schemas/2017-01-01-preview/Microsoft.LocationBasedServices.json#/resourceDefinitions/accounts",
+      "json": {
+        "location": "[resourceGroup().location]",
+        "name": "[parameters('name')]",
+        "sku": {
+          "name": "[parameters('pricingSpec')]"
+        },
+        "type": "Microsoft.LocationBasedServices/accounts"
+      }
+    },
+    {
+      "name": "LBS Account Create (-) Test, no location",
+      "expectedErrors": [
+        {
+          "message": "Missing required property: location",
+          "dataPath": "/",
+          "schemaPath": "/required/3"
+        }
+      ],
+      "definition": "https://schema.management.azure.com/schemas/2017-01-01-preview/Microsoft.LocationBasedServices.json#/resourceDefinitions/accounts",
+      "json": {
+        "apiVersion": "2017-01-01-preview",
+        "name": "[parameters('name')]",
+        "sku": {
+          "name": "[parameters('pricingSpec')]"
+        },
+        "type": "Microsoft.LocationBasedServices/accounts"
+      }
+    },
+    {
+      "name": "LBS Account Create (-) Test, no SKU",
+      "expectedErrors": [
+        {
+          "message": "Missing required property: sku",
+          "dataPath": "/",
+          "schemaPath": "/required/4"
+        }
+      ],
+      "definition": "https://schema.management.azure.com/schemas/2017-01-01-preview/Microsoft.LocationBasedServices.json#/resourceDefinitions/accounts",
+      "json": {
+        "apiVersion": "2017-01-01-preview",
+        "location": "[resourceGroup().location]",
+        "name": "[parameters('name')]",
+        "type": "Microsoft.LocationBasedServices/accounts"
+      }
+    },
+    {
+      "name": "LBS Account Create (-) Test, wrong type",
+      "expectedErrors": [
+        {
+          "message": "No enum match for: \"Microsoft.LocationBasedServices/nonexistentType\"",
+          "dataPath": "/type",
+          "schemaPath": "/properties/type/type"
+        }
+      ],
+      "definition": "https://schema.management.azure.com/schemas/2017-01-01-preview/Microsoft.LocationBasedServices.json#/resourceDefinitions/accounts",
+      "json": {
+        "apiVersion": "2017-01-01-preview",
+        "location": "[resourceGroup().location]",
+        "name": "[parameters('name')]",
+        "sku": {
+          "name": "[parameters('pricingSpec')]"
+        },
+        "type": "Microsoft.LocationBasedServices/nonexistentType"
+      }
+    },
+    {
+      "name": "LBS Account Create (-) Test, multiple errors",
+      "expectedErrors": [
+        {
+          "message": "Missing required property: name",
+          "dataPath": "/",
+          "schemaPath": "/required/0"
+        },
+        {
+          "message": "No enum match for: \"Microsoft.LocationBasedServices/nonexistentType\"",
+          "dataPath": "/type",
+          "schemaPath": "/properties/type/type"
+        }
+      ],
+      "definition": "https://schema.management.azure.com/schemas/2017-01-01-preview/Microsoft.LocationBasedServices.json#/resourceDefinitions/accounts",
+      "json": {
+        "apiVersion": "2017-01-01-preview",
+        "location": "[resourceGroup().location]",
+        "sku": {
+          "name": "[parameters('pricingSpec')]"
+        },
+        "type": "Microsoft.LocationBasedServices/nonexistentType"
+      }
+    }
+  ]
+}
